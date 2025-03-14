@@ -1,0 +1,6 @@
+envs:
+  api:
+    old_api: https://api.thedogapi.com
+    new_api: http://127.0.0.1:8080
+    v1: /v1/breeds
+    v2: /v2/breeds
