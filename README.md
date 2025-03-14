@@ -18,17 +18,19 @@ Este projeto tem como objetivo comparar automaticamente respostas obtidas de dua
 ### 1.3. Bibliotecas Utilizadas
 Este projeto utiliza as seguintes bibliotecas para facilitar a automação dos testes:
 
-- Robot Framework → Framework de automação utilizado para escrever, executar e gerenciar testes de forma legível e estruturada.
+- **Robot Framework** → Framework de automação utilizado para escrever, executar e gerenciar testes de forma legível e estruturada.
 
-- RequestsLibrary → Biblioteca que permite realizar requisições HTTP para testar APIs REST.
+- **RequestsLibrary** → Biblioteca que permite realizar requisições HTTP para testar APIs REST.
 
-- JSONLibrary → Biblioteca para manipulação, validação e comparação de dados no formato JSON.
+- **JSONLibrary** → Biblioteca para manipulação, validação e comparação de dados no formato JSON.
 
-- OperatingSystem → Biblioteca que permite interagir com o sistema operacional, como manipulação de arquivos e diretórios.
+- **PyYaml** → Biblioteca para manipulação de arquivos YAML no Python. Permite carregar, salvar e processar configurações estruturadas em YAML, facilitando o gerenciamento de variáveis de ambiente e configurações externas.
 
-- Collections → Biblioteca que facilita o uso de listas e dicionários no Robot Framework.
+- **OperatingSystem** → Biblioteca que permite interagir com o sistema operacional, como manipulação de arquivos e diretórios.
 
-- Process → Biblioteca usada para executar comandos no sistema operacional, como iniciar e finalizar processos (exemplo: iniciar o servidor mock).
+- **Collections** → Biblioteca que facilita o uso de listas e dicionários no Robot Framework.
+
+- **Process** → Biblioteca usada para executar comandos no sistema operacional, como iniciar e finalizar processos (exemplo: iniciar o servidor mock).
 
 ## 2. Instalação e Configuração do Ambiente
 
@@ -53,11 +55,32 @@ deactivate                     # para desativar o venv
 
 Depois de instalar e ativar o venv, é necessário instalar as dependências no novo ambiente.
 
-### Instale o Robot Framework e as Dependências
+### 2.3. Instale o Robot Framework e as Dependências
 
+Para instalar as dependências manualmente, execute:
+
+```Bash
 pip install robotframework
 pip install requests
 pip install robotframework-jsonlibrary
+pip install pyyaml
+```
+
+Ou, para instalar todas as dependências de uma vez, utilize:
+
+```Bash
+pip install -r requirements.txt
+```
+
+**💡 Observação:**
+
+Se precisar gerar um novo requirements.txt com todas as bibliotecas do seu ambiente, use o seguinte comando:
+
+```Bash
+pip freeze > requirements.txt
+```
+
+Isso garante que todas as dependências instaladas sejam registradas e possam ser facilmente reproduzidas em outro ambiente. 🚀
 
 ## 3. Estrutura do Projeto
 
@@ -74,7 +97,9 @@ pip install robotframework-jsonlibrary
 ├── 📁 tests/
 │ ├── test_api_comparation.robot #Arquivo principal de testes
 ├── 📁 venv/ #Ambiente virtual para instalação das dependências
-└── README.md
+├── .gitignore
+├── README.md
+└── requirements.txt
 ```
 
 ## 4. Configuração do Mock API Server (Simulação da Nova API)
