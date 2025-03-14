@@ -135,7 +135,7 @@ Suite Teardown    Run Keywords
 ...               Disable Firewall Rule For Mock Server
 ```
 
-## **4.3 Inicialização Manual do Mock Server**
+### 4.3 Inicialização Manual do Mock Server
 
 Caso precise iniciar o Mock Server manualmente para depuração ou testes isolados, utilize:
 
