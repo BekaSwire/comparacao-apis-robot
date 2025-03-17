@@ -269,29 +269,6 @@ Stop-Process -Id <PID_DO_SERVIDOR>
 
 Se desejar automatizar essa verificação, utilize a execução normal dos testes, pois o Mock Server já finaliza processos antigos automaticamente quando executado via Robot Framework.
 
-##  é simulada por um servidor local devido à sua origem em um arquivo .txt.
-
-6.1. Inicialização Automática
-
-O Mock Server é iniciado automaticamente antes dos testes e finalizado após a execução:
-
-Suite Setup       Run Keywords  Enable Firewall Rule For Mock Server  AND  Start Mock Api Server  
-Suite Teardown    Run Keywords  Stop Mock Api Server  AND  Disable Firewall Rule For Mock Server
-
-6.2. Inicialização Manual
-
-Caso queira iniciar manualmente:
-
-python _support/mock_api_server.py
-
-Para verificar se a porta 8080 já está ocupada:
-
-netstat -ano | findstr :8080
-
-Para encerrar um processo ativo:
-
-taskkill /F /PID <PID_DO_SERVIDOR>
-
 ## 📌 7. Notas Finais
 
 ### Comparação das APIs:
@@ -319,7 +296,6 @@ Esses logs ajudam a entender rapidamente quais mudanças impactam a API.
 - Certifique-se de manter a estrutura do projeto para facilitar a manutenção e escalabilidade dos testes.
 
 - Revise as configurações do firewall se houver problemas na execução do servidor mock.
-
 
 ## 🚀 Conclusão
 
