@@ -1,6 +1,7 @@
 # Teste Automatizado de Comparação de APIs com Robot Framework
 
 ### Objetivo
+
 Este projeto tem como objetivo comparar automaticamente respostas obtidas de duas APIs diferentes (antiga e nova), verificando:
 
 - Estrutura do objeto JSON
@@ -10,12 +11,15 @@ Este projeto tem como objetivo comparar automaticamente respostas obtidas de dua
 ## 1. Pré-requisitos
 
 ### 1.1. Python
+
 - Python 3.9+ (recomendado)
 
 ### 1.2. IDE
+
 - VS Code (ou qualquer outra IDE de sua preferência)
 
 ### 1.3. Bibliotecas Utilizadas
+
 Este projeto utiliza as seguintes bibliotecas para facilitar a automação dos testes:
 
 - **Robot Framework** → Framework de automação utilizado para escrever, executar e gerenciar testes de forma legível e estruturada.
@@ -32,6 +36,10 @@ Este projeto utiliza as seguintes bibliotecas para facilitar a automação dos t
 
 - **Process** → Biblioteca usada para executar comandos no sistema operacional, como iniciar e finalizar processos (exemplo: iniciar o servidor mock).
 
+- **Genson** → Biblioteca utilizada para gerar automaticamente um JSON Schema a partir de um conjunto de dados JSON. Isso permite definir a estrutura esperada das respostas de APIs e facilita a comparação entre diferentes versões de um serviço, identificando mudanças na estrutura dos dados.
+
+- **DeepDiff** → Biblioteca utilizada para detectar diferenças entre duas estruturas de dados JSON. Permite identificar adições, remoções e modificações nos schemas, tornando a comparação de versões de APIs mais detalhada e precisa.
+
 ## 2. Instalação e Configuração do Ambiente
 
 ### 2.1. Instalar Python e VS Code
@@ -41,6 +49,8 @@ Este projeto utiliza as seguintes bibliotecas para facilitar a automação dos t
 - Faça o download e instale o [VS Code](https://code.visualstudio.com/) (ou outra IDE de sua preferência).
 
 ### 2.2. Criar e Ativar Ambiente Virtual (venv)
+
+Na pasta raiz do projeto, execute:
 
 ```bash
 # No Git Bash
@@ -64,6 +74,8 @@ pip install robotframework
 pip install requests
 pip install robotframework-jsonlibrary
 pip install pyyaml
+pip install genson
+pip install deepdiff
 ```
 
 Ou, para instalar todas as dependências de uma vez, utilize:

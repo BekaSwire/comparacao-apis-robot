@@ -11,13 +11,18 @@ Suite Teardown    Run Keywords
 
 *** Test Cases ***
 Test Load API Data
-    [Documentation]  Tests if API responses are being loaded correctly
+    [Documentation]    Tests if API responses are being loaded correctly
     Load API Data
     Log    OLD API JSON: ${OLD_API_JSON}
     Log    NEW API JSON: ${NEW_API_JSON}
 
 Test Compare HTTP Status Codes
-    [Documentation]  Tests if the HTTP status codes of OLD and NEW API match
+    [Documentation]    Tests if the HTTP status codes of OLD and NEW API match
     Load API Data
     Compare HTTP Status Codes
     
+Test Compare JSON Schema
+    [Documentation]    Tests if the schema (fields and data types) of OLD and NEW API match
+    Load API Data
+    Compare API JSON Schemas
+           

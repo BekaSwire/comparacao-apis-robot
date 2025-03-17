@@ -1,0 +1,80 @@
+{
+    "$schema": "http://json-schema.org/schema#",
+    "type": "array",
+    "items": {
+        "type": "object",
+        "properties": {
+            "weight": {
+                "type": "object",
+                "properties": {
+                    "imperial": {
+                        "type": "string"
+                    },
+                    "metric": {
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "imperial",
+                    "metric"
+                ]
+            },
+            "height": {
+                "type": "object",
+                "properties": {
+                    "imperial": {
+                        "type": "string"
+                    },
+                    "metric": {
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "imperial",
+                    "metric"
+                ]
+            },
+            "id": {
+                "type": "integer"
+            },
+            "name": {
+                "type": "string"
+            },
+            "bred_for": {
+                "type": "string"
+            },
+            "breed_group": {
+                "type": "string"
+            },
+            "life_span": {
+                "type": "string"
+            },
+            "temperament": {
+                "type": "string"
+            },
+            "origin": {
+                "type": "string"
+            },
+            "reference_image_id": {
+                "type": "string"
+            },
+            "country_code": {
+                "type": "string"
+            },
+            "description": {
+                "type": "string"
+            },
+            "history": {
+                "type": "string"
+            }
+        },
+        "required": [
+            "height",
+            "id",
+            "life_span",
+            "name",
+            "reference_image_id",
+            "weight"
+        ]
+    }
+}

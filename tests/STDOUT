@@ -1,0 +1,21 @@
+{
+    "status": "fail",
+    "message": "\u274c Differences found in schema",
+    "old_schema_path": "../_fixtures/schema_old.json",
+    "new_schema_path": "../_fixtures/schema_new.json",
+    "differences": {
+        "added_keys": [
+            "root['items']['properties']['newParameter ']",
+            "root['items']['properties']['newParameter2']",
+            "root['items']['properties']['names']"
+        ],
+        "removed_keys": [],
+        "modified_types": [],
+        "removed_required": [
+            "life_span",
+            "name"
+        ],
+        "added_required": []
+    },
+    "total_differences": 5
+}
