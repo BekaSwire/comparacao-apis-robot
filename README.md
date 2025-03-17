@@ -108,6 +108,8 @@ Isso garante que todas as dependências instaladas sejam registradas e possam se
 │ ├── schema_new.json #JSON Schema gerado para a nova API
 │ ├── schema_old.json #JSON Schema gerado para a API antiga
 ├── 📁 _support/ #Arquivos auxiliares para execução dos testes
+│ ├── compare_api_content.py #Script para comparar os VALORES das respostas das APIs
+│ ├── generate_and_compare_schema.py #Script para comparar SCHEMAS das APIs
 │ ├── mock_api_server.py #Mock Server para simular respostas da API
 │ ├── resources.resource #Recursos reutilizáveis para os testes
 ├── 📁 _utils/ #Módulos utilitários para suporte aos testes
@@ -123,19 +125,33 @@ Isso garante que todas as dependências instaladas sejam registradas e possam se
 └── requirements.txt #Lista de dependências para instalação
 ```
 
-## 🔎 4. Como Funciona a Comparação dos Schemas JSON?
+## 🔎 4. Como Funciona a Comparação das APIs?
 
-Durante a comparação, os seguintes aspectos são analisados:
+Os testes realizam **duas comparações independentes**:
+
+1️⃣ Comparação de Schema JSON (estrutura da API)
+✔️ Verifica mudanças na estrutura, como adição, remoção ou modificação de campos.
+✔️ Identifica mudanças nos tipos de dados ou nos campos obrigatórios.
+
+2️⃣ Comparação de Conteúdo JSON (valores retornados pela API)
+✔️ Verifica se os valores das respostas são os mesmos.
+✔️ Detecta alterações de valores, chaves adicionadas/removidas e mudanças no conteúdo.
+
+### 📊 4.1. Comparação de Schema JSON
+
+**Objetivo:** Verificar diferenças na estrutura do JSON.
+
+**O que é analisado?**
 
 - Campos adicionados na nova API
 
 - Campos removidos que estavam na API antiga
 
-- Modificações nos tipos de dados (ex: integer → string)
+- Modificações nos tipos de dados (ex: `integer` → `string`)
 
-- Campos obrigatórios (required) que foram incluídos ou removidos
+- Modificação nos campos obrigatórios (`required`).
 
-### Exemplo de Saída no Log:
+### 📜 Exemplo de Saída no Log:
 
 ```
 📊 **Schema Comparison Report**
@@ -148,12 +164,44 @@ Durante a comparação, os seguintes aspectos são analisados:
 ✅ **Campos Obrigatórios Alterados:** ['life_span']
 ```
 
-Se **nenhuma diferença** for encontrada:
+✔️ Se **nenhuma diferença** for encontrada:
 
 ```
 📊 **Schema Comparison Report**
 🚀 **Differences Found:** 0
 ✅ No differences detected between OLD and NEW API schemas.
+```
+
+### 📊 4.2. Comparação de Conteúdo JSON
+
+**Objetivo:** Comparar os valores retornados pelas APIs e identificar diferenças no conteúdo.
+
+**O que é analisado?**
+
+- Valores alterados entre a API antiga e a nova.
+
+- Campos adicionados na nova API.
+
+- Campos removidos que existiam na API antiga.
+
+### 📜 Exemplo de Saída no Log:
+
+```
+📊 **API Content Comparison Report**
+🔵 **OLD API Data:** ../_fixtures/old_api.json
+🔶 **NEW API Data:** ../_fixtures/new_api.json
+🚀 **Differences Found:** 2
+➕ **New Values:** {'root[0]["name"]': {'old_value': 'Dog', 'new_value': 'Wolf'}}
+🗑️ **Removed Values:** {'root[1]["age"]': {'old_value': 3, 'new_value': None}}
+🔑 **New Keys Added:** ['root[2]["breed"]']
+```
+
+✔️ Se **nenhuma diferença** for encontrada:
+
+```
+📊 **API Content Comparison Report**
+🚀 **Differences Found:** 0
+✅ No differences detected between OLD and NEW API responses.
 ```
 
 ## 🛠️ 5. Execução dos Testes
@@ -301,4 +349,4 @@ Esses logs ajudam a entender rapidamente quais mudanças impactam a API.
 
 Este projeto oferece uma automação robusta para comparar APIs e detectar mudanças de forma eficiente. Com logs bem estruturados e um Mock Server integrado, garante-se uma validação rápida e confiável das diferenças entre as versões da API.
 
-Caso precise de suporte, contribuições são bem-vindas! 😊
+Contribuições são bem-vindas! 😊
