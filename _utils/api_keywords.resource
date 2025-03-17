@@ -132,3 +132,37 @@ Compare API JSON Schemas
     ...  \n❌ **Fields No Longer Required in NEW API:** ${removed_required}
 
     Log    ${schema_comparison_log}    level=INFO
+
+Compare API Content
+    [Documentation]  Compara os conteúdos das respostas das APIs (OLD e NEW) e exibe as diferenças no log.
+
+    Run Keyword If    '${OLD_API_JSON_PATH}' == '${EMPTY}' or '${NEW_API_JSON_PATH}' == '${EMPTY}'
+    ...    Fail    ❌ ERROR: JSON files not available. Run 'Load API Data' first!
+
+    ${result}=  Run Process    python   ../_support/compare_api_content.py
+    ...    ${OLD_API_JSON_PATH}    ${NEW_API_JSON_PATH}    shell=True    stdout=STDOUT    stderr=STDERR
+    ...    stderr=IGNORE
+
+    # 📌 Separar a saída padrão e os erros
+    Log    🔹 API Content Comparison Output:\n${result.stdout}    level=INFO
+
+    ${result_dict}=  Evaluate    json.loads('''${result.stdout}''')    json
+
+    # Definir diferenças detectadas
+    ${added_values}=  Set Variable    ${result_dict["differences"]["added_values"]}
+    ${removed_values}=  Set Variable    ${result_dict["differences"]["removed_values"]}
+    ${added_keys}=  Set Variable    ${result_dict["differences"]["added_keys"]}
+    ${total_differences}=  Evaluate    int(${result_dict["total_differences"]})  # 🚀 Garante que é um número
+
+    # 📌 Criar um log bem estruturado com múltiplas linhas
+    ${content_comparison_log}=  Catenate
+    ...  \n📊 **API Content Comparison Report**
+    ...  \n🔵 **OLD API Data:** ${OLD_API_JSON_PATH}
+    ...  \n🔶 **NEW API Data:** ${NEW_API_JSON_PATH}
+    ...  \n🚀 **Differences Found:** ${total_differences}
+    ...  \n➕ **New Values:** ${added_values}
+    ...  \n🗑️ **Removed Values:** ${removed_values}
+    ...  \n🔑 **New Keys Added:** ${added_keys}
+
+    Log    ${content_comparison_log}    level=INFO
+

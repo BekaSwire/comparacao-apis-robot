@@ -1,21 +1,25 @@
 {
     "status": "fail",
-    "message": "\u274c Differences found in schema",
-    "old_schema_path": "../_fixtures/schema_old.json",
-    "new_schema_path": "../_fixtures/schema_new.json",
+    "message": "\u2705 API content compared successfully",
+    "old_json_path": "../_fixtures/old_api.json",
+    "new_json_path": "../_fixtures/new_api.json",
     "differences": {
-        "added_keys": [
-            "root['items']['properties']['newParameter ']",
-            "root['items']['properties']['newParameter2']",
-            "root['items']['properties']['names']"
-        ],
-        "removed_keys": [],
-        "modified_types": [],
-        "removed_required": [
-            "life_span",
-            "name"
-        ],
-        "added_required": []
+        "added_values": {
+            "root[110]['name']": {
+                "new_value": "Miniature American Shepherd2",
+                "old_value": "Miniature American Shepherd"
+            }
+        },
+        "removed_values": {
+            "root[8]['bred_for']": "Hauling heavy freight, Sled pulling",
+            "root[67]['life_span']": "10 - 13 years",
+            "root[151]['name']": "Spinone Italiano"
+        },
+        "added_keys": {
+            "root[5]['newParameter ']": "here",
+            "root[64]['newParameter2']": "here",
+            "root[151]['names']": "Spinone Italiano"
+        }
     },
-    "total_differences": 5
+    "total_differences": 7
 }

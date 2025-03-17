@@ -25,4 +25,8 @@ Test Compare JSON Schema
     [Documentation]    Tests if the schema (fields and data types) of OLD and NEW API match
     Load API Data
     Compare API JSON Schemas
-           
+
+Test Compare API Content
+    [Documentation]    Tests if the content (values) of OLD and NEW API match
+    Load API Data
+    Compare API Content
